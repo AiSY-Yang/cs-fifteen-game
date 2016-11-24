@@ -14,6 +14,7 @@ namespace 排块游戏
     {
         //初始化为4*4个按钮
         const int N = 4;
+        bool gameStart=false;
         Button[,] buttons = new Button[N, N];
         public Form1()
         {
@@ -52,9 +53,14 @@ namespace 排块游戏
             Random random = new Random();
                for (int i = 0; i < 100; i++)
                     swap(buttons[random.Next(N), random.Next(N)], buttons[random.Next(N), random.Next(N)]);
+            gameStart = true;
         }
         private void numberButton_Click(object sender, EventArgs e)
         {
+            if (!gameStart)
+            {
+                return;
+            }
             //点击除开始外任意数字调用
             //当前点击方块和空方块的位置
             Button btn = sender as Button;
